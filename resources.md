@@ -5,3 +5,7 @@
 #Code lookup
 
 [Typescript Types](https://microsoft.github.io/TypeSearch/)
+
+#Git stuff
+
+[Git Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
