@@ -1,0 +1,31 @@
+#splash {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/splashplane.jpg");
+  background-size: cover;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  position: relative;
+  font-family: "Muli", sans-serif;
+  height: 100vh;
+}
+body > nav > div > a.left-pad.brand-logo > i {
+  padding-left: 1rem;
+  float: none;
+}
+.call-to-action {
+  background-color: transparent;
+  color: whitesmoke;
+  text-shadow: 1px 1px 1rem rgba(0, 0, 0, 0.42);
+  text-align: center;
+  margin-top: 60px;
+}
+.call-to-action h1 {
+  font-family: "Prata", serif;
+}
+.btn-splash {
+  background-color: rgba(168, 152, 126, 1);
+}
+.btn-splash:hover {
+  background-color: rgb(148, 132, 106);
+}
