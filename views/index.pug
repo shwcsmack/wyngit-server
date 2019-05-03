@@ -1,51 +1,9 @@
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+extends static-layout.pug
 
-    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
-    link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.8.1/css/all.css")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Muli|Prata")
-    link(rel="stylesheet", href="css/materialize.css")
-    link(rel="stylesheet", href="css/wyng-it.css")
-
-    title Wyng It | Fly in Style
-  body
-    nav
-      div(class="nav-wrapper grey darken-4")
-        a(href="#" class="left-pad brand-logo")
-          i(class="fas fa-plane-departure")
-          | Wyng It
-        a(href="#" data-target="nav-mobile" class="right sidenav-trigger")
-          i(class="material-icons") menu
-        ul(id="nav-mobile" class="right hide-on-med-and-down")
-          li
-            a(href="#") One
-          li
-            a(href="#") Two
-          li
-            a(href="#") Three
-        ul(class="sidenav" id="nav-mobile")
-          li
-            a(href="#") One
-          li
-            a(href="#") Two
-          li
-            a(href="#") Three
-    section(id="splash")
-      div(class="container call-to-action")
-        h1(class="header center orange-text") Private Jet Empty Legs
-        div(class="row center")
-          h5(class="header col s12 light") Private jet flying for business class prices. Wyng It provides a listing of availible empty leg flights from our partners.
-          a(class="waves-effect waves-light btn-large orange darken-2") Comming Soon
-  footer(class="page-footer  grey darken-4")
-    div(class="footer-copyright")
-      div(class="container")
-        span
-          i(class="far fa-copyright")
-          | 2019 Wyng It
-
-  script(type="text/javascript" src="js/materialize.js")
-  script(type="text/javascript" src="js/init.js")
+block content
+  section(id="splash")
+    div(class="container call-to-action")
+      h1(class="header center orange-text") Private Jet Empty Legs
+      div(class="row center")
+        h5(class="header col s12 light") Private jet flying for business class prices. Wyng It provides a listing of availible empty leg flights from our partners.
+        a(class="waves-effect waves-light btn-large orange darken-2") Comming Soon
