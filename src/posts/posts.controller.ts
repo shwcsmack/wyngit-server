@@ -2,6 +2,7 @@ import * as express from "express";
 import Controller from "../interfaces/controller.interface";
 import Post from "./post.interface";
 import postModel from "./posts.model";
+import PostNotFoundException from "../exceptions/PostNotFoundException";
 
 class PostsController implements Controller {
   public path = "/posts";
@@ -31,22 +32,47 @@ class PostsController implements Controller {
 
   private getPostById = (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const id = request.params.id;
     this.post.findById(id).then(post => {
-      response.send(post);
+      if (post) {
+        response.send(post);
+      } else {
+        next(new PostNotFoundException(id));
+      }
     });
   };
 
   private modifyPost = (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const id = request.params.id;
     const postData: Post = request.body;
     this.post.findByIdAndUpdate(id, postData, { new: true }).then(post => {
-      response.send(post);
+      if (post) {
+        response.send(post);
+      } else {
+        next(new PostNotFoundException(id));
+      }
+    });
+  };
+
+  private deletePost = (
+    request: express.Request,
+    response: express.Response,
+    next: express.NextFunction
+  ) => {
+    const id = request.params.id;
+    this.post.findByIdAndDelete(id).then(successResponse => {
+      if (successResponse) {
+        response.send(200);
+      } else {
+        next(new PostNotFoundException(id));
+      }
     });
   };
 
@@ -58,20 +84,6 @@ class PostsController implements Controller {
     const createdPost = new this.post(postData);
     createdPost.save().then(savedPost => {
       response.send(savedPost);
-    });
-  };
-
-  private deletePost = (
-    request: express.Request,
-    response: express.Response
-  ) => {
-    const id = request.params.id;
-    this.post.findByIdAndDelete(id).then(successResponse => {
-      if (successResponse) {
-        response.send(200);
-      } else {
-        response.send(404);
-      }
     });
   };
 }
