@@ -14,3 +14,9 @@
 
 [Vim Typescript](https://github.com/leafgarland/typescript-vim)
 [Thoughtbot dotfiles](https://github.com/thoughtbot/dotfiles)
+
+
+#EsLint
+
+[ES Lint w
+Prettier](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb)
