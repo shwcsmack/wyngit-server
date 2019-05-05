@@ -11,7 +11,7 @@ class App {
     this.app.get(
       '/',
       (req, res): void => {
-        res.send('Hello World!!!!');
+        res.send('Hello World!');
       },
     );
   }
