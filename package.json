@@ -9,7 +9,8 @@
     "dev": "ts-node ./src/server.ts",
     "lint": "eslint ./src --ext .ts,.tsx --fix",
     "test": "jest",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": "Shayne Stewart",
   "license": "ISC",
@@ -40,7 +41,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
     }
   },
   "lint-staged": {
