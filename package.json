@@ -7,7 +7,7 @@
     "start": "node index.js",
     "watch": "nodemon index.js",
     "dev": "ts-node ./src-new/server.ts",
-    "lint": "eslint ./src-new --ext .ts,.tsx"
+    "lint": "eslint ./src-new --ext .ts,.tsx --fix"
   },
   "author": "Shayne Stewart",
   "license": "ISC",
