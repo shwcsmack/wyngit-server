@@ -1,5 +1,5 @@
-import * as mongoose from "mongoose";
-import Post from "./post.interface";
+import * as mongoose from 'mongoose';
+import Post from './post.interface';
 
 const postSchema = new mongoose.Schema({
   authorId: String,
@@ -8,6 +8,6 @@ const postSchema = new mongoose.Schema({
 });
 
 //using TS Intersection Types I think
-const postModel = mongoose.model<Post & mongoose.Document>("Post", postSchema);
+const postModel = mongoose.model<Post & mongoose.Document>('Post', postSchema);
 
 export default postModel;

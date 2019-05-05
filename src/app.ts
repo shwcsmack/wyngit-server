@@ -1,48 +1,28 @@
-import * as bodyParser from "body-parser";
-import * as cookieParser from "cookie-parser";
-import * as express from "express";
-import * as mongoose from "mongoose";
-import Controller from "./interfaces/controller.interface";
-import errorMiddleware from "./middleware/error.middleware";
+import * as express from 'express';
+// import * as bodyParser from 'body-parser';
 
 class App {
   public app: express.Application;
+  public port: number;
 
-  constructor(controllers: Controller[]) {
+  public constructor(port: number) {
     this.app = express();
-
-    this.connectToTheDatabase();
-    this.initializeMiddlewares();
-    this.initializeControllers(controllers);
-    this.initializeErrorHandling();
+    this.port = port;
+    this.app.get(
+      '/',
+      (req, res): void => {
+        res.send('Hello World!');
+      },
+    );
   }
 
-  public listen() {
-    this.app.listen(process.env.PORT, () => {
-      console.log(`App listening on the port ${process.env.PORT}`);
-    });
-  }
-
-  private initializeMiddlewares() {
-    this.app.use(bodyParser.json());
-    this.app.use(cookieParser());
-  }
-
-  private initializeErrorHandling() {
-    this.app.use(errorMiddleware);
-  }
-
-  private initializeControllers(controllers: Controller[]) {
-    controllers.forEach(controller => {
-      this.app.use("/", controller.router);
-    });
-  }
-
-  private connectToTheDatabase() {
-    const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
-    mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`, {
-      useNewUrlParser: true,
-    });
+  public listen(): void {
+    this.app.listen(
+      this.port,
+      (): void => {
+        console.log(`App listening on port ${this.port}`);
+      },
+    );
   }
 }
 

@@ -1,11 +1,5 @@
-import "dotenv/config";
-import App from "./app";
-import PostsController from "./posts/posts.controller";
-import AuthenticationController from "./authentication/authentication.controller";
-import validateEnv from "./utils/validateEnv";
+import App from './app';
 
-validateEnv();
-
-const app = new App([new PostsController(), new AuthenticationController()]);
+const app = new App(3000);
 
 app.listen();
