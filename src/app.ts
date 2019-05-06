@@ -6,7 +6,7 @@ class App {
   public app: express.Application;
   public port: number;
 
-  public constructor(controllers: any, port: number) {
+  public constructor(controllers: any[], port: number) {
     this.app = express();
     this.port = port;
 
