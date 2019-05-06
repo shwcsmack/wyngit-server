@@ -30,7 +30,9 @@ class FlightsController {
   };
 
   public createAFlight = (req: Request, res: Response): void => {
-    res.send('unable');
+    const flight: Flight = req.body;
+    this.flights.push(flight);
+    res.send(this.flights);
   };
 }
 
