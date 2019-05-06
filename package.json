@@ -10,8 +10,7 @@
     "lint": "eslint ./src --ext .ts,.tsx --fix",
     "test": "jest",
     "watch:test": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "coverage": "jest --coverage && codecov"
+    "coverage": "jest --coverage"
   },
   "author": "Shayne Stewart",
   "license": "ISC",
