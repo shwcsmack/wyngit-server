@@ -10,7 +10,7 @@
     "lint": "eslint ./src --ext .ts,.tsx --fix",
     "test": "jest",
     "watch:test": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "coverage": "jest --coverage"
   },
   "author": "Shayne Stewart",
   "license": "ISC",
@@ -29,6 +29,7 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "codecov": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
