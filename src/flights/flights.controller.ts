@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import Flight from './flight.interface';
+import flightModel from './flights.model';
 
 class FlightsController {
   public path: string = '/flights';
@@ -26,13 +27,22 @@ class FlightsController {
   }
 
   public getAllFlights = (req: Request, res: Response): void => {
+    flightModel.find().then(
+      (flights): void => {
+        res.send(flights);
+      },
+    );
     res.send(this.flights);
   };
 
   public createAFlight = (req: Request, res: Response): void => {
-    const flight: Flight = req.body;
-    this.flights.push(flight);
-    res.send(this.flights);
+    const flightData: Flight = req.body;
+    const createdFlight = new flightModel(flightData);
+    createdFlight.save().then(
+      (savedFlight): void => {
+        res.send(savedFlight);
+      },
+    );
   };
 }
 
