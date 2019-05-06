@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { Class } from 'babel-types';
+import * as mongoose from 'mongoose';
 
 class App {
   public app: express.Application;
@@ -10,6 +10,7 @@ class App {
     this.app = express();
     this.port = port;
 
+    this.connectToDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
   }
@@ -24,6 +25,11 @@ class App {
         this.app.use('/', controller.router);
       },
     );
+  }
+
+  private connectToDatabase(): void {
+    const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+    mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`, { useNewUrlParser: true });
   }
 
   public listen(): void {
