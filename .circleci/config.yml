@@ -38,7 +38,5 @@ jobs:
       # run tests!
       - run: npm test
 
-      - run: npx codecov
-
       - codecov/upload:
-          file: "./coverage/"
+          file: "./coverage/*.json"
