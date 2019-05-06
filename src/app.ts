@@ -1,17 +1,27 @@
 import * as express from 'express';
-// import * as bodyParser from 'body-parser';
+import * as bodyParser from 'body-parser';
+import { Class } from 'babel-types';
 
 class App {
   public app: express.Application;
   public port: number;
 
-  public constructor(port: number) {
+  public constructor(controllers: any, port: number) {
     this.app = express();
     this.port = port;
-    this.app.get(
-      '/',
-      (req, res): void => {
-        res.send('Hello World!');
+
+    this.initializeMiddlewares();
+    this.initializeControllers(controllers);
+  }
+
+  private initializeMiddlewares(): void {
+    this.app.use(bodyParser.json());
+  }
+
+  private initializeControllers(controllers: any[]): void {
+    controllers.forEach(
+      (controller: any): void => {
+        this.app.use('/', controller.router);
       },
     );
   }
