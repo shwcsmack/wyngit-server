@@ -36,7 +36,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm run coverage 
+      - run: npm run coverage
 
-      - codecov/upload:
-          file: 
+      - run: npx codecov 
+
+      # - codecov/upload:
+          # file: 
