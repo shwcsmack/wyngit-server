@@ -26,6 +26,7 @@ class FlightsController {
     this.router.post(this.path, this.createAFlight);
     this.router.get(`${this.path}/:id`, this.getFlightById);
     this.router.patch(`${this.path}/:id`, this.modifyFlight);
+    this.router.delete(`${this.path}/:id`, this.deleteFlight);
   }
 
   public getAllFlights = (req: Request, res: Response): void => {
@@ -64,6 +65,20 @@ class FlightsController {
     flightModel.findByIdAndUpdate(id, flightData, { new: true }).then(
       (flight): void => {
         res.send(flight);
+      },
+    );
+  };
+
+  public deleteFlight = (req: Request, res: Response): void => {
+    const id = req.params.id;
+
+    flightModel.findByIdAndDelete(id).then(
+      (successResponse): void => {
+        if (successResponse) {
+          res.send(200);
+        } else {
+          res.send(400);
+        }
       },
     );
   };
