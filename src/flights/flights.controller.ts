@@ -1,4 +1,4 @@
-import { Router, Request, Response, Application } from 'express';
+import { Router, Request, Response } from 'express';
 import Flight from './flight.interface';
 
 class FlightsController {
