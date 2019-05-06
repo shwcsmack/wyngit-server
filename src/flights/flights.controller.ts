@@ -24,6 +24,7 @@ class FlightsController {
   public intializeRoutes(): void {
     this.router.get(this.path, this.getAllFlights);
     this.router.post(this.path, this.createAFlight);
+    this.router.get(`${this.path}/:id`, this.getFlightById);
   }
 
   public getAllFlights = (req: Request, res: Response): void => {
@@ -41,6 +42,16 @@ class FlightsController {
     createdFlight.save().then(
       (savedFlight): void => {
         res.send(savedFlight);
+      },
+    );
+  };
+
+  public getFlightById = (req: Request, res: Response): void => {
+    const id = req.params.id;
+
+    flightModel.findById(id).then(
+      (flight): void => {
+        res.send(flight);
       },
     );
   };
