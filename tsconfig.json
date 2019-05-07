@@ -2,7 +2,6 @@
   "compilerOptions": {
     "paths": { "*": ["types/*"] },
     "sourceMap": true,
-    "inlineSourceMap": true,
     "target": "es2017",
     "outDir": "./dist",
     "baseUrl": "./src",
