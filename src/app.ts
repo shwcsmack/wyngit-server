@@ -2,12 +2,13 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
 import errorMiddleware from './middleware/error.middleware';
+import Controller from './interfaces/controller.interface';
 
 class App {
   public app: express.Application;
   public port: number;
 
-  public constructor(controllers: any[], port: number) {
+  public constructor(controllers: Controller[], port: number) {
     this.app = express();
     this.port = port;
 
@@ -21,9 +22,9 @@ class App {
     this.app.use(bodyParser.json());
   }
 
-  private initializeControllers(controllers: any[]): void {
+  private initializeControllers(controllers: Controller[]): void {
     controllers.forEach(
-      (controller: any): void => {
+      (controller: Controller): void => {
         this.app.use('/', controller.router);
       },
     );
