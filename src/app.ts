@@ -1,19 +1,48 @@
 import * as express from 'express';
-// import * as bodyParser from 'body-parser';
+import * as bodyParser from 'body-parser';
+import * as mongoose from 'mongoose';
+import 'reflect-metadata'; //have to use this for class-validator
+import errorMiddleware from './middleware/error.middleware';
+import Controller from './interfaces/controller.interface';
 
 class App {
   public app: express.Application;
   public port: number;
 
-  public constructor(port: number) {
+  public constructor(controllers: Controller[], port: number) {
     this.app = express();
     this.port = port;
-    this.app.get(
-      '/',
-      (req, res): void => {
-        res.send('Hello World!');
+
+    this.connectToDatabase();
+    this.initializeMiddlewares();
+    this.initializeControllers(controllers);
+    this.initializeErrorHandling();
+  }
+
+  private initializeMiddlewares(): void {
+    this.app.use(bodyParser.json());
+  }
+
+  private initializeControllers(controllers: Controller[]): void {
+    controllers.forEach(
+      (controller: Controller): void => {
+        this.app.use('/', controller.router);
       },
     );
+  }
+
+  private initializeErrorHandling(): void {
+    this.app.use(errorMiddleware);
+  }
+
+  private connectToDatabase(): void {
+    const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+    const mongooseOptions = {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    };
+    mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`, mongooseOptions);
   }
 
   public listen(): void {
