@@ -15,7 +15,7 @@ class FlightsController implements Controller {
     this.intializeRoutes();
   }
 
-  public intializeRoutes(): void {
+  private intializeRoutes(): void {
     this.router.get(this.path, this.getAllFlights);
     this.router.post(this.path, validationMiddleware(CreateFlightDto), this.createAFlight);
     this.router.get(`${this.path}/:id`, this.getFlightById);
