@@ -5,6 +5,8 @@ import flightModel from './flights.model';
 import FlightNotFoundException from '../exceptions/FlightNotFoundException';
 import CreateFlightDto from './flight.dto';
 import validationMiddleware from '../middleware/validation.middleware';
+import authMiddleware from '../middleware/auth.middleware';
+import RequestWithUser from '../interfaces/requestWithUser.interface';
 
 class FlightsController implements Controller {
   public path: string = '/flights';
@@ -17,10 +19,12 @@ class FlightsController implements Controller {
 
   private intializeRoutes(): void {
     this.router.get(this.path, this.getAllFlights);
-    this.router.post(this.path, validationMiddleware(CreateFlightDto), this.createAFlight);
     this.router.get(`${this.path}/:id`, this.getFlightById);
-    this.router.patch(`${this.path}/:id`, validationMiddleware(CreateFlightDto, true), this.modifyFlight);
-    this.router.delete(`${this.path}/:id`, this.deleteFlight);
+    this.router
+      .all(`${this.path}\*`, authMiddleware)
+      .post(this.path, validationMiddleware(CreateFlightDto), this.createAFlight)
+      .patch(`${this.path}/:id`, validationMiddleware(CreateFlightDto, true), this.modifyFlight)
+      .delete(`${this.path}/:id`, this.deleteFlight);
   }
 
   public getAllFlights = (req: Request, res: Response): void => {
@@ -31,9 +35,12 @@ class FlightsController implements Controller {
     );
   };
 
-  public createAFlight = (req: Request, res: Response): void => {
+  public createAFlight = (req: RequestWithUser, res: Response): void => {
     const flightData: Flight = req.body;
-    const createdFlight = new this.flight(flightData);
+    const createdFlight = new this.flight({
+      ...flightData,
+      createdBy: req.user._id,
+    });
     createdFlight.save().then(
       (savedFlight): void => {
         res.send(savedFlight);
