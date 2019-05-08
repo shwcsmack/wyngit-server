@@ -8,6 +8,7 @@ const flightSchema = new mongoose.Schema({
   arrivalTime: String,
   aircraft: String,
   operator: String,
+  createdBy: String,
 });
 
 const flightModel = mongoose.model<Flight & mongoose.Document>('Flight', flightSchema);

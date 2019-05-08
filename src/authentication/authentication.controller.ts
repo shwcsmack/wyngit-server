@@ -25,6 +25,7 @@ class AuthenticationController implements Controller {
   private initializeRoutes() {
     this.router.post(`${this.path}/register`, validationMiddleware(CreateUserDto), this.registration);
     this.router.post(`${this.path}/login`, validationMiddleware(LogInDto), this.logIn);
+    this.router.post(`${this.path}/logout`, this.logOut);
   }
 
   private registration = async (req: Request, res: Response, next: NextFunction) => {
@@ -80,6 +81,11 @@ class AuthenticationController implements Controller {
 
   private createCookie(tokenData: TokenData) {
     return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn}`;
+  }
+
+  private logOut(req: Request, res: Response, next: NextFunction) {
+    res.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
+    res.send(200);
   }
 }
 
