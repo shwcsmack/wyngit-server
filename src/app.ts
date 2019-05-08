@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
+import 'reflect-metadata'; //have to use this for class-validator
 import errorMiddleware from './middleware/error.middleware';
 import Controller from './interfaces/controller.interface';
 

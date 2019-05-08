@@ -3,6 +3,8 @@ import Controller from '../interfaces/controller.interface';
 import Flight from './flight.interface';
 import flightModel from './flights.model';
 import FlightNotFoundException from '../exceptions/FlightNotFoundException';
+import CreateFlightDto from './flight.dto';
+import validationMiddleware from '../middleware/validation.middleware';
 
 class FlightsController implements Controller {
   public path: string = '/flights';
@@ -15,9 +17,9 @@ class FlightsController implements Controller {
 
   public intializeRoutes(): void {
     this.router.get(this.path, this.getAllFlights);
-    this.router.post(this.path, this.createAFlight);
+    this.router.post(this.path, validationMiddleware(CreateFlightDto), this.createAFlight);
     this.router.get(`${this.path}/:id`, this.getFlightById);
-    this.router.patch(`${this.path}/:id`, this.modifyFlight);
+    this.router.patch(`${this.path}/:id`, validationMiddleware(CreateFlightDto, true), this.modifyFlight);
     this.router.delete(`${this.path}/:id`, this.deleteFlight);
   }
 
