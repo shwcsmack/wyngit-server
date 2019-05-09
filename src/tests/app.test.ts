@@ -6,10 +6,9 @@ import * as express from 'express';
 describe('App', () => {
   let instance: App;
 
-  it('should assign the proper properties from constructor', () => {
-    instance = new App([], 6000);
+  it('should be able to be instantiated', () => {
+    instance = new App([]);
 
-    expect(instance.port).toEqual(6000);
     expect(instance.app).toBeDefined();
   });
 });

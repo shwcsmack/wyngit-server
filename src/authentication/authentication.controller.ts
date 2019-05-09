@@ -12,7 +12,7 @@ class AuthenticationController implements Controller {
   public path = '/auth';
   public router = Router();
   private user = userModel;
-  private authenticationService = new AuthenticationService();
+  public authenticationService = new AuthenticationService();
 
   public constructor() {
     this.initializeRoutes();

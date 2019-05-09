@@ -8,7 +8,7 @@ import TokenData from '../interfaces/TokenData.interface';
 import User from '../users/user.interface';
 
 class AuthenticationService {
-  private user = userModel;
+  public user = userModel;
   private saltRounds = 10;
 
   public async register(userData: CreateUserDto) {
