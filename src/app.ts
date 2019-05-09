@@ -8,11 +8,10 @@ import Controller from './interfaces/controller.interface';
 
 class App {
   public app: express.Application;
-  public port: number;
+  private port: number = parseInt(process.env.PORT);
 
-  public constructor(controllers: Controller[], port: number) {
+  public constructor(controllers: Controller[]) {
     this.app = express();
-    this.port = port;
 
     this.connectToDatabase();
     this.initializeMiddlewares();
@@ -45,6 +44,10 @@ class App {
       useCreateIndex: true,
     };
     mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`, mongooseOptions);
+  }
+
+  public getServer() {
+    return this.app;
   }
 
   public listen(): void {

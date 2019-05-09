@@ -2,6 +2,8 @@
 
 [Typescript Express Tut](https://wanago.io/2018/12/03/typescript-express-tutorial-routing-controllers-middleware/)
 
+[MDN Stuff](https://developer.mozilla.org/en-US/docs/Learn)
+
 #Code lookup
 
 [Typescript Types](https://microsoft.github.io/TypeSearch/)
@@ -14,7 +16,6 @@
 
 [Vim Typescript](https://github.com/leafgarland/typescript-vim)
 [Thoughtbot dotfiles](https://github.com/thoughtbot/dotfiles)
-
 
 #EsLint
 
