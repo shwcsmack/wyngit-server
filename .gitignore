@@ -1,6 +1,9 @@
 #vscode stuff
 .vscode/
 
+#build dir
+dist/
+
 # Logs
 logs
 *.log
