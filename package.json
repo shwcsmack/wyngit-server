@@ -4,7 +4,7 @@
   "description": "Server side of Wyng It",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "ts-node ./src/server.ts",
     "watch": "nodemon ./src/server.ts",
     "dev": "ts-node ./src/server.ts",
     "lint": "eslint ./src --ext .ts,.tsx --fix",
