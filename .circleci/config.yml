@@ -38,7 +38,4 @@ jobs:
       # run tests!
       - run: npm run coverage
 
-      - run: npx codecov 
-
-      # - codecov/upload:
-          # file: 
+      - run: npx codecov
