@@ -11,7 +11,8 @@
     "test": "jest",
     "watch:test": "jest --watch",
     "coverage": "jest --coverage",
-    "build": "tsc"
+    "build": "tsc",
+    "build:start": "tsc && node ./dist/server.js"
   },
   "author": "Shayne Stewart",
   "license": "ISC",
